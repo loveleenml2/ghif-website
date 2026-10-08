@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Genuine Happiness International Foundation – Happiness is Your Right</title>
+<meta name="description" content="GHIF provides free, accredited vocational training in Tailoring, Hairdressing and Building Construction for youth and women in Uganda.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0f2547; --navy-2:#16345f; --navy-3:#1d4a80;
+    --gold:#c8891a; --gold-light:#e8b04b;
+    --cream:#faf7f2; --ink:#1d2b3a; --grey:#5a6b85; --green:#0e6e4b;
+    --white:#ffffff; --radius:14px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--cream);line-height:1.65}
+  h1,h2,h3,.nav-logo{font-family:'Poppins',sans-serif}
+  .container{width:min(1100px,92%);margin:0 auto}
+  .btn{display:inline-block;padding:13px 28px;border-radius:50px;font-weight:600;text-decoration:none;font-size:1rem;transition:.25s;border:none;cursor:pointer}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:var(--white);box-shadow:0 6px 18px rgba(200,137,26,.35)}
+  .btn-gold:hover{transform:translateY(-2px)}
+  .btn-outline{border:2px solid var(--gold);color:var(--gold-light)}
+  .btn-outline:hover{background:var(--gold);color:#fff}
+
+  /* TOP STRIP (like Ministry site) */
+  .topstrip{background:var(--navy);color:#fff;font-size:.82rem;padding:8px 0}
+  .topstrip .container{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .topstrip a{color:var(--gold-light);text-decoration:none;font-weight:600}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:100;background:var(--navy);box-shadow:0 2px 10px rgba(0,0,0,.25)}
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;width:100%;max-width:100%}
+  .nav-logo{color:#fff;font-weight:800;font-size:1.15rem;text-decoration:none;line-height:1.2}
+  .nav-logo span{display:block;font-size:.72rem;color:var(--gold-light);font-weight:600;letter-spacing:.12em;text-transform:uppercase}
+  .nav-links{display:flex;gap:24px;list-style:none;align-items:center}
+  .nav-links a{color:#dbe7f7;text-decoration:none;font-weight:500;font-size:.93rem}
+  .nav-links a:hover{color:var(--gold-light)}
+  .nav-donate{background:linear-gradient(135deg,var(--gold),var(--gold-light));color:#fff !important;padding:9px 22px;border-radius:50px;font-weight:600 !important}
+  .nav-toggle{display:none;background:none;border:none;font-size:1.6rem;color:#fff;cursor:pointer}
+
+  /* HERO SLIDER (moving pictures) */
+  .slider{position:relative;height:520px;overflow:hidden;background:var(--navy)}
+  .slide{position:absolute;inset:0;opacity:0;transition:opacity .9s ease;display:flex;align-items:center}
+  .slide.active{opacity:1}
+  .slide-bg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;color:#fff}
+  .video-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .slide-bg.has-video::after{content:"";position:absolute;inset:0;background:rgba(10,20,40,.12)}
+  .bg-1{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-3) 60%,#2d6ab5)}
+  .bg-2{background:linear-gradient(135deg,#7a3e9d,#4568dc)}
+  .bg-3{background:linear-gradient(135deg,#ba4a00,#e88d8d)}
+  .slide-bg .ph-label{background:rgba(0,0,0,.28);border:1px dashed rgba(255,255,255,.55);border-radius:10px;padding:10px 22px;font-size:.85rem;letter-spacing:.05em}
+  .slide-bg .ph-icon{font-size:3rem;margin-bottom:10px}
+  .slide-content{position:relative;z-index:2;width:min(1100px,92%);margin:0 auto;color:#fff;padding-bottom:40px}
+  .slide-content .kicker{display:inline-block;background:rgba(232,176,75,.2);border:1px solid rgba(232,176,75,.55);color:var(--gold-light);padding:7px 18px;border-radius:50px;font-size:.8rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;margin-bottom:18px}
+  .slide-content h1{font-size:clamp(2rem,4.8vw,3.2rem);font-weight:800;line-height:1.15;margin-bottom:16px;text-shadow:0 2px 12px rgba(0,0,0,.35)}
+  .slide-content p{font-size:1.08rem;color:#e6eefa;max-width:560px;margin-bottom:26px;text-shadow:0 1px 8px rgba(0,0,0,.35)}
+  .slide-dots{position:absolute;bottom:22px;left:50%;transform:translateX(-50%);display:flex;gap:10px;z-index:3}
+  .slide-dots button{width:12px;height:12px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;transition:.25s}
+  .slide-dots button.active{background:var(--gold-light);transform:scale(1.25)}
+  .slide-arrow{position:absolute;top:50%;transform:translateY(-50%);z-index:3;background:rgba(15,37,71,.55);border:none;color:#fff;font-size:1.4rem;width:44px;height:44px;border-radius:50%;cursor:pointer;transition:.25s}
+  .slide-arrow:hover{background:var(--gold)}
+  .slide-arrow.prev{left:16px}
+  .slide-arrow.next{right:16px}
+
+  /* SECTIONS */
+  section{padding:80px 0}
+  .sec-label{color:var(--gold);font-weight:700;letter-spacing:.14em;text-transform:uppercase;font-size:.8rem;display:block;margin-bottom:10px}
+  h2{font-size:clamp(1.7rem,3.5vw,2.4rem);color:var(--navy);font-weight:800;margin-bottom:18px}
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+
+  /* NEWS (like Ministry site) */
+  .news{background:var(--white)}
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:24px;margin-top:36px}
+  .news-card{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(15,37,71,.08);border:1px solid #eef1f6;transition:.25s}
+  .news-card:hover{transform:translateY(-6px)}
+  .news-thumb{height:150px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:.8rem;letter-spacing:.06em;background-size:cover;background-position:center}
+  .news-body{padding:20px}
+  .news-date{color:var(--gold);font-size:.8rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+  .news-body h3{color:var(--navy);font-size:1.05rem;margin:8px 0 10px}
+  .news-body p{color:var(--grey);font-size:.9rem}
+
+  /* STATS */
+  .stats{background:var(--cream)}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;text-align:center}
+  .stat{padding:28px 14px;border-radius:var(--radius);background:#fff;border:1px solid #f0e4cd;box-shadow:0 3px 14px rgba(15,37,71,.06)}
+  .stat b{display:block;font-size:2.4rem;font-family:'Poppins';color:var(--gold);font-weight:800}
+  .stat span{color:var(--grey);font-size:.92rem}
+
+  /* PROGRAMS */
+  .programs{background:var(--white)}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:36px}
+  .card{border-radius:var(--radius);overflow:hidden;background:#fff;box-shadow:0 4px 20px rgba(15,37,71,.08);transition:.25s;border:1px solid #eef1f6}
+  .card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(15,37,71,.14)}
+  .card-top{height:150px;display:flex;align-items:center;justify-content:center;font-size:3rem}
+  .c-tail{background:linear-gradient(135deg,#b06ab3,#4568dc)}
+  .c-hair{background:linear-gradient(135deg,#e88d8d,#c2185b)}
+  .c-build{background:linear-gradient(135deg,#f2a65a,#ba4a00)}
+  .c-mentor{background:linear-gradient(135deg,#43b97f,#0e6e4b)}
+  .card-body{padding:22px}
+  .card h3{color:var(--navy);margin-bottom:8px;font-size:1.15rem}
+  .card p{color:var(--grey);font-size:.93rem}
+  .tag{display:inline-block;background:#f4ead3;color:var(--gold);font-size:.75rem;font-weight:700;border-radius:50px;padding:5px 12px;margin-top:12px;letter-spacing:.05em}
+
+  /* VIDEOS */
+  .videos{background:var(--cream)}
+  .video-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px}
+  .video{border-radius:var(--radius);overflow:hidden;box-shadow:0 6px 22px rgba(15,37,71,.12);aspect-ratio:16/9;background:#000}
+
+  /* TESTIMONIALS */
+  .quotes{background:var(--navy);color:#fff}
+  .quotes .sec-label{color:var(--gold-light)}
+  .quotes h2{color:#fff}
+  .quote-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px;margin-top:36px}
+  .quote{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:28px}
+  .quote h3{color:var(--gold-light);margin-bottom:10px}
+  .quote p{color:#dbe7f7;font-size:.95rem;font-style:italic}
+  .quote .who{font-style:normal;color:#9db6d8;font-size:.85rem;margin-top:14px}
+
+  /* TEAM */
+  .team{background:var(--white)}
+  .team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;margin-top:36px}
+  .member{text-align:center;padding:30px 18px;border-radius:var(--radius);background:linear-gradient(180deg,#fff,#f6f9ff);border:1px solid #e8edf5}
+  .avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:800;font-family:'Poppins';color:#fff}
+  .member h3{color:var(--navy);font-size:1.05rem}
+  .member span{color:var(--gold);font-size:.85rem;font-weight:600}
+
+  /* CONTACT */
+  .contact{background:var(--cream)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:30px}
+  .contact-card{background:#fff;border-radius:var(--radius);padding:32px;box-shadow:0 4px 20px rgba(15,37,71,.08)}
+  .contact-card h3{color:var(--navy);margin-bottom:12px}
+  .contact-item{display:flex;gap:12px;margin:14px 0;color:var(--grey);font-size:.95rem}
+  .contact-item b{color:var(--ink)}
+  .donate-box{background:linear-gradient(135deg,var(--navy),var(--navy-3));color:#fff;border-radius:var(--radius);padding:32px;margin-top:48px;text-align:center}
+  .donate-box h3{font-size:1.4rem;margin-bottom:10px;color:var(--gold-light)}
+  .donate-box p{color:#cfe0f5;margin-bottom:20px;max-width:520px;margin-left:auto;margin-right:auto}
+
+  footer{background:#0a1930;color:#8ba1c0;text-align:center;padding:38px 20px;font-size:.9rem}
+  footer .heart{color:var(--gold)}
+  footer b{color:#c9d8ec}
+
+  @media(max-width:840px){
+    .split,.contact-grid{grid-template-columns:1fr}
+    .stats-grid{grid-template-columns:repeat(2,1fr)}
+    .slider{height:560px}
+    .slide-content{padding-top:30px}
+    .nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:var(--navy);flex-direction:column;padding:20px;gap:18px;box-shadow:0 10px 20px rgba(0,0,0,.25)}
+    .nav-links.open{display:flex}
+    .nav-toggle{display:block}
+    .topstrip .container{justify-content:center;text-align:center}
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP STRIP -->
+<div class="topstrip">
+  <div class="container">
+    <span>📍 Plot No. 26, Kaucho Road, Pallisa District, Uganda</span>
+    <span>📧 <a href="mailto:info@genuine-happiness.org">info@genuine-happiness.org</a> &nbsp;|&nbsp; 📞 <a href="tel:+256322415917">+256 322 415 917</a></span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <div class="container nav-inner">
+    <a href="#top" class="nav-logo" style="display:flex;align-items:center;gap:10px">
+      <img src="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/65e6dc529_e7320e2ce_Clipped_image_20250316_164447.png" alt="GHIF logo" style="width:42px;height:42px;border-radius:50%;object-fit:cover">
+      <span style="display:flex;flex-direction:column;line-height:1.25"><span style="color:#fff;font-weight:700;font-size:1.18rem;letter-spacing:.03em">GENUINE HAPPINESS INTERNATIONAL FOUNDATION</span><span style="display:block;font-size:.68rem;color:var(--gold-light);font-weight:600;letter-spacing:.12em;text-transform:uppercase">Together We Rise</span></span>
+    </a>
+    <button class="nav-toggle" onclick="document.getElementById('navLinks').classList.toggle('open')">☰</button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#impact">Impact</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="https://gofund.me/ebbdd9e5b" target="_blank" rel="noopener" class="nav-donate">Donate</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO SLIDER -->
+<div class="slider" id="top">
+  <div class="slide active" id="slide-0">
+    <div class="slide-bg has-video">
+      <video class="video-bg" autoplay muted playsinline poster="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/fe96ff105_07940a00d_Screenshot_20250315_140737_Photos2.jpg">
+        <source src="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/c3141ce27_ghif_banner_main_sharp.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-content">
+      <h1>Building Futures. Changing Lives.</h1>
+      <p>Free, government-accredited vocational training and mentorship for youth and women excluded from formal education — one stitch, one brick, one story at a time.</p>
+      <a href="https://gofund.me/ebbdd9e5b" target="_blank" rel="noopener" class="btn btn-gold">Support a Trainee</a>
+    </div>
+  </div>
+  <div class="slide" id="slide-1">
+    <div class="slide-bg has-video">
+      <video class="video-bg" muted playsinline preload="metadata" poster="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/fe96ff105_07940a00d_Screenshot_20250315_140737_Photos2.jpg">
+        <source src="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/578666e16_ghif_banner_hair_sharp.mp4" type="video/mp4">
+      </video>
+    </div>
+    <div class="slide-content">
+      <span class="kicker">Tailoring. Hairdressing. Construction.</span>
+      <h1>Skills that open doors.</h1>
+      <p>Our trainees learn a trade hands-on, from the salon chair to the sewing machine to the building site.</p>
+      <a href="#programs" class="btn btn-gold">Explore Our Programs</a>
+    </div>
+  </div>
+  <div class="slide" id="slide-2">
+    <div class="slide-bg" style="background-image:url('https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/2f80fafce_b89a42688_IMG-20250611-WA00752.jpg');background-size:cover;background-position:center"></div>
+    <div class="slide-content">
+      <span class="kicker">Skills. Confidence. Dignity.</span>
+      <h1>Every graduate leaves with a trade.</h1>
+      <p>800+ trainees have completed life skills courses with us — and 512 now earn their own income in jobs or businesses of their own.</p>
+      <a href="#programs" class="btn btn-gold">Explore Our Programs</a>
+    </div>
+  </div>
+  <div class="slide" id="slide-3">
+    <div class="slide-bg" style="background-image:url('https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/fe96ff105_07940a00d_Screenshot_20250315_140737_Photos2.jpg');background-size:cover;background-position:center 30%"></div>
+    <div class="slide-content">
+      <span class="kicker">Nationally accredited since 2024</span>
+      <h1>Recognised certification. Real opportunity.</h1>
+      <p>GHIF runs its own test centre — trainees sit exams and receive nationally recognised certification that employers trust.</p>
+      <a href="#stories" class="btn btn-gold">Meet Our Graduates</a>
+    </div>
+  </div>
+  <button class="slide-arrow prev" onclick="moveSlide(-1)">❮</button>
+  <button class="slide-arrow next" onclick="moveSlide(1)">❯</button>
+  <div class="slide-dots">
+    <button class="active" onclick="goSlide(0)"></button>
+    <button onclick="goSlide(1)"></button>
+    <button onclick="goSlide(2)"></button>
+    <button onclick="goSlide(3)"></button>
+  </div>
+</div>
+
+<!-- NEWS -->
+<section class="news" id="news">
+  <div class="container">
+    <span class="sec-label">News &amp; updates</span>
+    <h2>Latest from GHIF</h2>
+    <div class="news-grid">
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#b06ab3,#4568dc)">PHOTO SLOT — news image 1</div>
+        <div class="news-body">
+          <span class="news-date">[add date]</span>
+          <h3>[Your news title here]</h3>
+          <p>Send me the story — a new intake, a graduation, a partnership — and I'll fill this in.</p>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#43b97f,#0e6e4b)">PHOTO SLOT — news image 2</div>
+        <div class="news-body">
+          <span class="news-date">[add date]</span>
+          <h3>[Your news title here]</h3>
+          <p>Each card shows a photo, date, headline and a short summary, just like the Ministry site.</p>
+        </div>
+      </div>
+      <div class="news-card">
+        <div class="news-thumb" style="background:linear-gradient(135deg,#f2a65a,#ba4a00)">PHOTO SLOT — news image 3</div>
+        <div class="news-body">
+          <span class="news-date">[add date]</span>
+          <h3>[Your news title here]</h3>
+          <p>You can have as many cards as you like; they stack neatly on phones.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IMPACT -->
+<section class="stats" id="impact">
+  <div class="container">
+    <span class="sec-label">Our impact so far</span>
+    <h2>Real skills. Real jobs. Real change.</h2>
+    <div class="stats-grid">
+      <div class="stat"><b>800+</b><span>Trainees completed life skills courses</span></div>
+      <div class="stat"><b>512</b><span>Secured jobs or started businesses</span></div>
+      <div class="stat"><b>3</b><span>Accredited trades taught</span></div>
+      <div class="stat"><b>2024</b><span>Government accreditation &amp; test centre</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container split">
+    <div>
+      <span class="sec-label">About GHIF</span>
+      <h2>A movement of hope, resilience and practical transformation</h2>
+      <p style="color:var(--grey);margin-bottom:16px">Founded in 2023, the Genuine Happiness International Foundation – Uganda Chapter serves youth and women who have been excluded from formal education. We believe self-development is the foundation of change: through vocational training, skills-building and mentorship, GHIF restores power — the power to take control and transform lives.</p>
+      <p style="color:var(--grey)">By equipping young women and men with real-world, job-ready skills, we open doors to employment, entrepreneurship and dignified livelihoods that create lasting community change across Uganda's under-served regions.</p>
+      <div class="contact-card" style="margin-top:24px">
+        <h3>Our project aims</h3>
+        <div class="contact-item"><b>1.</b><span>Provide inclusive vocational training to underprivileged youth, especially young women and men, enabling independent, dignified livelihoods.</span></div>
+        <div class="contact-item"><b>2.</b><span>Equip adolescents and young adults excluded from formal education with practical, job-ready skills.</span></div>
+        <div class="contact-item"><b>3.</b><span>Foster self-confidence and personal agency through hands-on mentorship and supportive training environments.</span></div>
+      </div>
+    </div>
+    <div>
+      <div class="contact-card" id="founder">
+        <img src="https://base44.app/api/apps/6abd591882b98d950ab7f58b/files/mp/public/6abd591882b98d950ab7f58b/c41d8b082_loveleen_photo.jpg" alt="Loveleen Ayebare Muhoozi, Founding President of GHIF" style="width:100%;border-radius:12px;margin-bottom:18px;object-fit:cover">
+        <h3>Our founder's story: from overlooked to empowered</h3>
+        <p style="color:var(--grey);margin-bottom:12px"><b style="color:var(--navy)">Loveleen Ayebare Muhoozi</b> — Founding President</p>
+        <p style="color:var(--grey);font-style:italic;margin-bottom:12px">"Skills gave me what the system took away—confidence, respect and a reason to lead."</p>
+        <p style="color:var(--grey);margin-bottom:12px">I was not meant to be the founder of anything. I was meant to be forgotten. Growing up with only an O-level education, I lived on the margins — not just economically, but emotionally and socially. I watched my voice disappear while university graduates were celebrated, and slowly I began to believe that without a degree, I had no value, no place, no future.</p>
+        <p style="color:var(--grey);margin-bottom:12px">It wasn't a lack of ambition. It was the absence of access. That painful truth didn't break me — it shaped me. As an adult I returned to education and earned a Bachelor's degree in Political Science and a Master's in Digital Media Management from Birkbeck, University of London — acts of healing, dignity and quiet defiance.</p>
+        <p style="color:var(--grey);margin-bottom:12px">My journey led me to found GHIF for young people pushed out of the formal education system due to poverty, teenage pregnancy, domestic violence and stigma — a platform I wish I had — where worth is not measured by academic credentials but by spirit, skill and lived wisdom.</p>
+        <p style="color:var(--grey);margin-bottom:0">Every time a graduate shakes my hand, starts a business, or mentors another learner, I am reminded that pain can be turned into purpose, exclusion can birth empowerment, and invisible girls and boys can become visible leaders. This is the heart of GHIF — a journey we're building, together.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section class="programs" id="programs">
+  <div class="container">
+    <span class="sec-label">What we do</span>
+    <h2>Training that opens doors</h2>
+    <div class="cards">
+      <div class="card">
+        <div class="card-top c-tail">🧵</div>
+        <div class="card-body">
+          <h3>Tailoring</h3>
+          <p>Stitching skills. Weaving futures. From measurement to finished garment, trainees master a complete trade.</p>
+          <span class="tag">Accredited course</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top c-hair">💇🏾‍♀️</div>
+        <div class="card-body">
+          <h3>Hairdressing</h3>
+          <p>Beauty for every texture, tone and story. Trainees graduate ready for salon work or their own business.</p>
+          <span class="tag">Accredited course</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top c-build">🧱</div>
+        <div class="card-body">
+          <h3>Building Construction</h3>
+          <p>Building the future, brick by brick. Practical construction skills that employers and communities need.</p>
+          <span class="tag">Accredited course</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top c-mentor">🤝🏾</div>
+        <div class="card-body">
+          <h3>Mentorship</h3>
+          <p>Empowering growth through guidance, connection and shared purpose — support that continues beyond the classroom.</p>
+          <span class="tag">All trainees</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="quotes" id="stories">
+  <div class="container">
+    <span class="sec-label">Graduate stories</span>
+    <h2>Futures being shaped, one story at a time</h2>
+    <div class="quote-grid">
+      <div class="quote">
+        <h3>Mariam's story</h3>
+        <p>"Restoring dignity, one client at a time."</p>
+        <div class="who">Hairdressing graduate</div>
+      </div>
+      <div class="quote">
+        <h3>Sarah's story</h3>
+        <p>"A path to empowerment through skills and self-belief."</p>
+        <div class="who">Tailoring graduate</div>
+      </div>
+      <div class="quote">
+        <h3>David's story</h3>
+        <p>"Building more than structures — building a future."</p>
+        <div class="who">Building Construction graduate</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos">
+  <div class="container">
+    <span class="sec-label">See us in action</span>
+    <h2>Life at GHIF</h2>
+    <div class="video-grid">
+      <div class="video"><iframe src="https://www.youtube.com/embed/iky2e5DB2sQ" title="GHIF video" loading="lazy" allowfullscreen style="width:100%;height:100%;border:0"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/p3a-qxC04qM" title="GHIF video" loading="lazy" allowfullscreen style="width:100%;height:100%;border:0"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/3E3_hhQIfMU" title="GHIF video" loading="lazy" allowfullscreen style="width:100%;height:100%;border:0"></iframe></div>
+      <div class="video"><iframe src="https://www.youtube.com/embed/0mEjc19RlOo" title="GHIF video" loading="lazy" allowfullscreen style="width:100%;height:100%;border:0"></iframe></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <span class="sec-label">Our team</span>
+    <h2>The changemakers behind GHIF</h2>
+    <div class="team-grid">
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,var(--gold),var(--gold-light))">LA</div>
+        <h3>Loveleen Ayebare</h3>
+        <span>Founder &amp; CEO</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#4568dc,#2d6ab5)">PJ</div>
+        <h3>Philemon Anatogu Junior</h3>
+        <span>Secretary</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#43b97f,#0e6e4b)">GN</div>
+        <h3>Grace Ninsiima</h3>
+        <span>Finance Director</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#ba4a00,#e88d8d)">SM</div>
+        <h3>Samuel Muhoozi</h3>
+        <span>Operations Director</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#8e44ad,#c39bd3)">MN</div>
+        <h3>Mariam Namukose</h3>
+        <span>Beauty Therapy / Hairdressing Instructor</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#0e6e4b,#43b97f)">AA</div>
+        <h3>Amina Amagoro</h3>
+        <span>Fashion and Design Instructor</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#b8860b,#ffd700)">AM</div>
+        <h3>Aisha Mudondo</h3>
+        <span>Fashion and Design Instructor</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#2c3e50,#7f8c8d)">AO</div>
+        <h3>Andrew Okurut</h3>
+        <span>Building Construction Instructor</span>
+      </div>
+      <div class="member">
+        <div class="avatar" style="background:linear-gradient(135deg,#c0392b,#e67e22)">NA</div>
+        <h3>Nelly Arikos</h3>
+        <span>Beauty Therapy / Hairdressing Instructor</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <span class="sec-label">Contact us</span>
+    <h2>Get in touch</h2>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <h3>Visit or write to us</h3>
+        <div class="contact-item"><span>📍</span><span><b>Address:</b><br>Plot No. 26, Kaucho Road,<br>Pallisa District, Uganda</span></div>
+        <div class="contact-item"><span>📧</span><span><b>Email:</b> <a href="mailto:info@genuine-happiness.org" style="color:var(--navy);font-weight:600;text-decoration:none">info@genuine-happiness.org</a></span></div>
+        <div class="contact-item"><span>📱</span><span><b>Phone:</b> <a href="tel:+256322415917" style="color:var(--navy);font-weight:600;text-decoration:none">+256 322 415 917</a></span></div>
+        <div class="contact-item"><span>💬</span><span><b>WhatsApp:</b> <a href="https://wa.me/447946881801" style="color:var(--navy);font-weight:600;text-decoration:none">+44 7946 881801</a></span></div>
+      </div>
+      <div class="contact-card">
+        <h3>Send us an inquiry</h3>
+        <form action="mailto:info@genuine-happiness.org" method="post" enctype="text/plain">
+          <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <input type="email" name="email" placeholder="Your email" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <input type="text" name="subject" placeholder="Subject" style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <textarea name="message" placeholder="Your message or inquiry" rows="4" required style="width:100%;padding:10px 12px;margin-bottom:12px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem"></textarea>
+          <button type="submit" class="btn btn-gold" style="width:100%">Send inquiry</button>
+        </form>
+        <p style="color:var(--grey);font-size:.8rem;margin-top:10px">Your inquiry opens an email to info@genuine-happiness.org — just press send in your mail app.</p>
+      </div>
+    </div>
+
+    <div class="donate-box" id="donate">
+      <h3>Support a trainee today</h3>
+      <p>Your donation funds training materials, equipment, instructor time and certification for young people building a dignified livelihood. 100% goes to the programme.</p>
+      <p style="margin-bottom:24px"><strong style="color:#fff">Give securely by card</strong> through our GoFundMe campaign:</p>
+      <a href="https://gofund.me/ebbdd9e5b" target="_blank" rel="noopener" class="btn btn-gold" style="font-size:1.05rem;padding:14px 38px">Donate securely on GoFundMe</a>
+      <p style="margin-top:22px;margin-bottom:8px;font-size:.9rem;color:#cfe0f5">Prefer bank transfer or another method?</p>
+      <a href="mailto:info@genuine-happiness.org?subject=Donation%20to%20GHIF" style="color:var(--gold-light);text-decoration:underline">Email us for donation details</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p><b>© 2026 Genuine Happiness International Foundation</b> – Together We Rise. All Rights Reserved.</p>
+  <p style="margin-top:6px">Website designed &amp; maintained with <span class="heart">♥</span> by <b>Loveleen Ayebare</b></p>
+</footer>
+
+<script>
+  var current = 0, total = 4, timer;
+  var videos = {0: document.querySelector('#slide-0 video'), 1: document.querySelector('#slide-1 video')};
+  function showSlide(n){
+    for(var i=0;i<total;i++){
+      document.getElementById('slide-'+i).classList.toggle('active', i===n);
+      document.querySelectorAll('.slide-dots button')[i].classList.toggle('active', i===n);
+      if(videos[i] && i!==n){ videos[i].pause(); }
+    }
+    current = n;
+    if(videos[n]){ videos[n].currentTime = 0; videos[n].play().catch(function(){}); }
+  }
+  function moveSlide(dir){ showSlide((current + dir + total) % total); resetTimer(); }
+  function goSlide(n){ showSlide(n); resetTimer(); }
+  function resetTimer(){
+    clearInterval(timer);
+    var d = current===0 ? 60000 : current===1 ? 20000 : 6000;
+    timer = setInterval(function(){ moveSlide(1); }, d);
+  }
+  [0,1].forEach(function(i){
+    if(videos[i]){ videos[i].addEventListener('ended', function(){ if(current===i){ moveSlide(1); } }); }
+  });
+  resetTimer();
+</script>
+
+</body>
+</html>
