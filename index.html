@@ -469,11 +469,11 @@
       </div>
       <div class="contact-card">
         <h3>Send us an inquiry</h3>
-        <form action="mailto:info@genuine-happiness.org" method="post" enctype="text/plain">
-          <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
-          <input type="email" name="email" placeholder="Your email" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
-          <input type="text" name="subject" placeholder="Subject" style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
-          <textarea name="message" placeholder="Your message or inquiry" rows="4" required style="width:100%;padding:10px 12px;margin-bottom:12px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem"></textarea>
+        <form id="inquiry-form" onsubmit="return sendInquiry(event)">
+          <input type="text" id="inq-name" placeholder="Your name" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <input type="email" id="inq-email" placeholder="Your email" required style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <input type="text" id="inq-subject" placeholder="Subject" style="width:100%;padding:10px 12px;margin-bottom:10px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem">
+          <textarea id="inq-message" placeholder="Your message or inquiry" rows="4" required style="width:100%;padding:10px 12px;margin-bottom:12px;border:1px solid #d7dce6;border-radius:8px;font-family:inherit;font-size:.9rem"></textarea>
           <button type="submit" class="btn btn-gold" style="width:100%">Send inquiry</button>
         </form>
         <p style="color:var(--grey);font-size:.8rem;margin-top:10px">Your inquiry opens an email to info@genuine-happiness.org — just press send in your mail app.</p>
@@ -497,6 +497,14 @@
 </footer>
 
 <script>
+  function sendInquiry(e){
+    e.preventDefault();
+    var n=document.getElementById('inq-name').value, em=document.getElementById('inq-email').value,
+        sub=document.getElementById('inq-subject').value||'Website inquiry', m=document.getElementById('inq-message').value;
+    var body='Name: '+n+'\nEmail: '+em+'\n\n'+m;
+    window.location.href='mailto:info@genuine-happiness.org?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
+    return false;
+  }
   var current = 0, total = 4, timer;
   var videos = {0: document.querySelector('#slide-0 video'), 1: document.querySelector('#slide-1 video')};
   function showSlide(n){
